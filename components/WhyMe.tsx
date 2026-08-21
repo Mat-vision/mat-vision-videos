@@ -15,7 +15,7 @@ export default function WhyMe() {
         </Reveal>
 
         <Reveal delay={100} className="text-center mb-16">
-          <p className="text-gray-400">Simple. Three reasons...</p>
+          <p className="text-gray-300">Simple. Three reasons...</p>
         </Reveal>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
@@ -30,7 +30,7 @@ export default function WhyMe() {
                     {card.title}
                   </h3>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed">{card.description}</p>
+                <p className="text-gray-300 text-sm leading-relaxed">{card.description}</p>
               </div>
             </Reveal>
           ))}

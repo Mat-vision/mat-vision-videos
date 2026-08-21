@@ -31,6 +31,10 @@ export default function Hero() {
         <div
           className="relative w-full max-w-3xl mx-auto aspect-video rounded-2xl overflow-hidden cursor-pointer group mb-12"
           onClick={() => setModalOpen(true)}
+          role="button"
+          aria-label="Watch showreel"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setModalOpen(true) }}
         >
           <Image
             src={heroThumbnail}

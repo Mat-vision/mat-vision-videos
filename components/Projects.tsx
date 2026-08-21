@@ -85,14 +85,15 @@ function ProjectCard({ project, onPlay }: { project: Project; onPlay: () => void
       />
       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div
+        <button
           onClick={onPlay}
-          className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+          aria-label="Play video"
+          className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path d="M6 4L16 10L6 16V4Z" fill="white" />
           </svg>
-        </div>
+        </button>
       </div>
       <div className="absolute bottom-4 left-4">
         <span className="text-xs text-gray-300 uppercase tracking-wider">

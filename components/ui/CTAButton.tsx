@@ -6,7 +6,7 @@ interface CTAButtonProps {
   className?: string
 }
 
-export default function CTAButton({ href = '#', onClick, className = '' }: CTAButtonProps) {
+export default function CTAButton({ href = 'mailto:mat@matvisionvideos.com', onClick, className = '' }: CTAButtonProps) {
   return (
     <Link
       href={href}

@@ -20,7 +20,7 @@ export default function Stats() {
                 <div className="text-4xl md:text-5xl font-bold text-[#2f9dff] mb-2">
                   <CountUp value={stat.value} />
                 </div>
-                <p className="text-gray-400 text-sm md:text-base">{stat.label}</p>
+                <p className="text-gray-300 text-sm md:text-base">{stat.label}</p>
               </div>
             </Reveal>
           ))}

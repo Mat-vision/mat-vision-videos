@@ -13,6 +13,12 @@ export default function Reveal({ children, className = '', delay = 0 }: RevealPr
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      setVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

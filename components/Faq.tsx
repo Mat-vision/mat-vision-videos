@@ -15,7 +15,7 @@ export default function Faq() {
         </Reveal>
 
         <Reveal delay={100} className="text-center mb-16">
-          <p className="text-gray-400">Have any questions? Check these.</p>
+          <p className="text-gray-300">Have any questions? Check these.</p>
         </Reveal>
 
         <div className="space-y-8 mb-16">
@@ -27,7 +27,7 @@ export default function Faq() {
                 </span>
                 <div>
                   <h3 className="text-white font-semibold text-lg mb-2">{item.question}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{item.answer}</p>
+                  <p className="text-gray-300 text-sm leading-relaxed">{item.answer}</p>
                 </div>
               </div>
             </Reveal>
