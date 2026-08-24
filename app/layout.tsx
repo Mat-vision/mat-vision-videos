@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: 'Mat Vision Videos | Turn Your Copy Into Videos That Sell',
   description: '500M+ paid views generated. Premium video editing services for ads, VSLs, and brand content.',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/assets/mat-vision-logo-black.png',
+    shortcut: '/assets/mat-vision-logo-black.png',
+    apple: '/assets/mat-vision-logo-black.png',
   },
 }
 
