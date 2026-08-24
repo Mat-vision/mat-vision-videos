@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
+import { useRef, useState } from 'react'
 import Reveal from './ui/Reveal'
 import CTAButton from './ui/CTAButton'
 import VideoModal from './ui/VideoModal'
@@ -13,33 +12,39 @@ type Filter = 'all' | 'ads' | 'vsls'
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<Filter>('all')
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const filtered =
     activeFilter === 'all'
       ? projects
       : projects.filter((p) => p.category === activeFilter)
 
+  function scrollBy(direction: 'left' | 'right') {
+    if (!scrollRef.current) return
+    const card = scrollRef.current.querySelector('.project-card') as HTMLElement
+    const cardWidth = card?.offsetWidth ?? 400
+    scrollRef.current.scrollBy({ left: direction === 'left' ? -cardWidth : cardWidth, behavior: 'smooth' })
+  }
+
   return (
-    <section className="bg-black py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-black py-10 md:py-12 px-6">
+      <div className="max-w-7xl mx-auto">
         <Reveal>
-          <h2
-            className="text-3xl md:text-4xl font-bold text-white text-center mb-4"
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-2">
             Full Projects
           </h2>
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="flex justify-center gap-3 mb-14">
+          <div className="flex justify-center gap-2 mb-8">
             {(['all', 'ads', 'vsls'] as Filter[]).map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                className={`px-4 py-1 rounded-full text-sm font-semibold ${
                   activeFilter === f
                     ? 'bg-[#2f9dff]/20 text-[#2f9dff] border border-[#2f9dff]/50'
-                    : 'bg-transparent text-gray-400 border border-gray-700 hover:border-gray-500'
+                    : 'bg-transparent text-white border border-gray-700 hover:border-gray-500'
                 }`}
               >
                 {f === 'all' ? 'All' : f === 'ads' ? 'Ads' : 'VSLs'}
@@ -48,18 +53,43 @@ export default function Projects() {
           </div>
         </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-14">
-          {filtered.map((project, i) => (
-            <Reveal key={project.id} delay={i * 100}>
+        <div className="relative">
+          <button
+            onClick={() => scrollBy('left')}
+            aria-label="Scroll left"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/80 text-white flex items-center justify-center cursor-pointer hover:bg-black/90"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 3L5 8L10 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {filtered.map((project) => (
               <ProjectCard
+                key={project.id}
                 project={project}
                 onPlay={() => setSelectedVideo(project.videoUrl)}
               />
-            </Reveal>
-          ))}
+            ))}
+          </div>
+
+          <button
+            onClick={() => scrollBy('right')}
+            aria-label="Scroll right"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/80 text-white flex items-center justify-center cursor-pointer hover:bg-black/90"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3L11 8L6 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
 
-        <Reveal className="text-center">
+        <Reveal className="text-center mt-8">
           <CTAButton href="#contact" />
         </Reveal>
       </div>
@@ -75,30 +105,22 @@ export default function Projects() {
 
 function ProjectCard({ project, onPlay }: { project: Project; onPlay: () => void }) {
   return (
-    <div className="relative aspect-video rounded-xl overflow-hidden group cursor-pointer bg-[#0a0a0a]">
-      <Image
-        src={project.thumbnail}
-        alt={project.title}
-        fill
-        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-        sizes="(max-width: 768px) 100vw, 400px"
-      />
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <button
-          onClick={onPlay}
-          aria-label="Play video"
-          className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M6 4L16 10L6 16V4Z" fill="white" />
+    <div
+      className="project-card relative flex-shrink-0 w-[400px] rounded-xl overflow-hidden bg-[#0a0a0a] cursor-pointer snap-start"
+      onClick={onPlay}
+    >
+      <div className="relative aspect-video">
+        <img
+          src={`/api/gumlet-thumbnail/${project.gumletId}`}
+          alt={project.title}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <path d="M12 8L28 18L12 28V8Z" fill="white" />
           </svg>
-        </button>
-      </div>
-      <div className="absolute bottom-4 left-4">
-        <span className="text-xs text-gray-300 uppercase tracking-wider">
-          {project.category === 'ads' ? 'Ad' : 'VSL'}
-        </span>
+        </div>
       </div>
     </div>
   )

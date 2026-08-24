@@ -2,8 +2,10 @@ export interface Project {
   id: string
   category: 'ads' | 'vsls'
   title: string
+  gumletId: string
   thumbnail: string
   videoUrl: string
+  horizontalThumbnail: boolean
 }
 
 export interface Stat {
@@ -28,27 +30,93 @@ export interface Logo {
   svg: string
 }
 
+export interface LogoImage {
+  name: string
+  src: string
+  scale?: number
+}
+
 export const projects: Project[] = [
   {
     id: '1',
     category: 'ads',
-    title: 'Product Launch Ad',
+    title: 'AD 1',
+    gumletId: '6a8b523eab2c54150e93ea94',
     thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=800&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b523eab2c54150e93ea94',
+    horizontalThumbnail: true,
   },
   {
     id: '2',
-    category: 'vsls',
-    title: 'Sales Video Letter',
+    category: 'ads',
+    title: 'AD 2',
+    gumletId: '6a8b5302cad008e012bd258b',
     thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b5302cad008e012bd258b',
+    horizontalThumbnail: true,
   },
   {
     id: '3',
     category: 'ads',
-    title: 'Brand Awareness Campaign',
+    title: 'AD 3',
+    gumletId: '6a8b53c5cad008e012bd2875',
     thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b53c5cad008e012bd2875',
+    horizontalThumbnail: true,
+  },
+  {
+    id: '4',
+    category: 'vsls',
+    title: 'VSL 1',
+    gumletId: '6a8b524fcad008e012bd2313',
+    thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b524fcad008e012bd2313',
+    horizontalThumbnail: true,
+  },
+  {
+    id: '5',
+    category: 'vsls',
+    title: 'VSL 2',
+    gumletId: '6a8b5138ab2c54150e93e745',
+    thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b5138ab2c54150e93e745',
+    horizontalThumbnail: true,
+  },
+  {
+    id: '6',
+    category: 'ads',
+    title: 'AD 4',
+    gumletId: '6a8b50826946b9808fc53fb7',
+    thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=800&q=80',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b50826946b9808fc53fb7',
+    horizontalThumbnail: true,
+  },
+  {
+    id: '7',
+    category: 'ads',
+    title: 'AD 5',
+    gumletId: '6a8b50e16946b9808fc540c6',
+    thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b50e16946b9808fc540c6',
+    horizontalThumbnail: true,
+  },
+  {
+    id: '8',
+    category: 'vsls',
+    title: 'VSL 3',
+    gumletId: '6a8b51c9ab2c54150e93e942',
+    thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b51c9ab2c54150e93e942',
+    horizontalThumbnail: true,
+  },
+  {
+    id: '9',
+    category: 'vsls',
+    title: 'VSL 4',
+    gumletId: '6a8b51d56946b9808fc54416',
+    thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=800&q=80',
+    videoUrl: 'https://play.gumlet.io/embed/6a8b51d56946b9808fc54416',
+    horizontalThumbnail: true,
   },
 ]
 
@@ -64,19 +132,19 @@ export const whyMeCards: WhyMeCard[] = [
     number: '01',
     title: 'Buyer psychology',
     description:
-      'Every frame is crafted to trigger emotion and drive action. I dont just edit — I convert viewers into customers.',
+      'After years of analysing data and working with over 100 brands across numerous niches I identified the psychological frameworks that make people watch and buy. I don’t approach editing as cutting clips. I take your data, viewer behaviour, analysis and use it in order to craft edits that work. Every shot, graphic, cut, sound effect, and music track is there for a reason - to turn viewer into buyer.',
   },
   {
     number: '02',
     title: 'Express delivery',
     description:
-      'Fast turnaround without sacrificing quality. Your campaign launches on time, every time.',
+      'Money loves speed. There is nothing worse than waiting for an edit while your ads die off in the ad account. With me you’re not going to face that problem. I’m using proven frameworks that helped me create ads for multiple 9 figure brands in under 48h. All while maintaining flawless communication so that you know exactly when your next winning creative is going to be completed.',
   },
   {
     number: '03',
-    title: 'Tailored strategy',
+    title: 'Tailored Strategy',
     description:
-      'No cookie-cutter templates. Each video is built around your product, audience, and business goals.',
+      'Over the years I’ve worked with countless brands in numerous niches. What works for a 6-figure E-com brand isn’t going to work for a 9-figure financial service business. That’s why I personalize the editing to your specific niche and product. We will take your target demographic, your message, and craft an experience tailored to what’s going to work for your specific business.',
   },
 ]
 
@@ -85,25 +153,25 @@ export const faqItems: FaqItem[] = [
     number: '01',
     question: "What's the cost?",
     answer:
-      'Pricing varies based on project scope, length, and complexity. I offer custom packages tailored to your needs. Reach out for a free quote.',
+      'The cost depends on the scope of work, complexity and length of the project. Contact me to get a quote tailored towards your needs.',
   },
   {
     number: '02',
     question: "What's the delivery time?",
     answer:
-      'Standard delivery is 5–7 business days. Rush turnaround available for urgent campaigns at an additional fee.',
+      'First versions of the ads (up to 5 minutes long) will be delivered in under 48h. For bigger projects like VSLs or bigger ad batches the delivery shouldn’t take longer than a week however it does depend on the scope of work.',
   },
   {
     number: '03',
     question: 'Can you handle big files and high resolutions?',
     answer:
-      'Absolutely. I work with 4K+ footage, large file sizes, and all major formats. Your quality stays intact end-to-end.',
+      "Absolutely! I had chance to work on 6K files shot on $100K RED cameras. I had projects where the files alone took up over 1tb of space. Doesn't matter if you need 1080p, 4K, or even 6K - I can handle it.",
   },
   {
     number: '04',
     question: "What if the video isn't up to my standards?",
     answer:
-      'I offer unlimited revisions until youre 100% satisfied. Your satisfaction is my priority — I dont rest until its right.',
+      'Simple. I will work on it until it is. My priority is making sure every project I work on is a success. For both me and my clients. That’s why revisions are included in the price. If I’m not able to deliver a video you’re satisfied with, you don’t pay. Even though it never happened to me.',
   },
 ]
 
@@ -134,5 +202,18 @@ export const logos: Logo[] = [
   },
 ]
 
-export const heroVideoUrl = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+export const logoImages: LogoImage[] = [
+  { name: 'Orbio World', src: '/assets/logos/normalized/logo-0.png' },
+  { name: 'AuraSeed', src: '/assets/logos/normalized/logo-1.png' },
+  { name: 'Americor', src: '/assets/logos/normalized/logo-2.png' },
+  { name: 'Agen CFO', src: '/assets/logos/normalized/logo-3.png' },
+  { name: 'Derila', src: '/assets/logos/normalized/logo-4.png' },
+  { name: 'Client logo 6', src: '/assets/logos/normalized/logo-5.png' },
+  { name: 'Matsato', src: '/assets/logos/normalized/logo-6.png' },
+  { name: 'Paid House', src: '/assets/logos/normalized/logo-7.png' },
+  { name: 'Client logo 9', src: '/assets/logos/normalized/logo-8.png' },
+  { name: 'Client logo 10', src: '/assets/logos/normalized/logo-9.png' },
+]
+
+export const heroVideoUrl = 'https://play.gumlet.io/embed/6a8b5a10ab2c54150e940012'
 export const heroThumbnail = 'https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=1200&q=80'

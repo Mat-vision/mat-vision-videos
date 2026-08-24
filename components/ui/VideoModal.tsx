@@ -39,18 +39,29 @@ export default function VideoModal({ videoUrl, isOpen, onClose }: VideoModalProp
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M5 5L15 15M15 5L5 15" stroke="white" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
-        <video
-          src={videoUrl}
-          controls
-          autoPlay
-          className="w-full h-full"
-        />
+        {videoUrl.includes('play.gumlet.io/embed/') ? (
+          <iframe
+            src={videoUrl}
+            title="Gumlet video player"
+            className="absolute inset-0 h-full w-full border-0"
+            referrerPolicy="origin"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write;"
+            allowFullScreen
+          />
+        ) : (
+          <video
+            src={videoUrl}
+            controls
+            autoPlay
+            className="w-full h-full"
+          />
+        )}
       </div>
     </div>
   )
