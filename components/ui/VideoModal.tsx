@@ -1,14 +1,17 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 interface VideoModalProps {
   videoUrl: string
+  isVertical?: boolean
   isOpen: boolean
   onClose: () => void
 }
 
-export default function VideoModal({ videoUrl, isOpen, onClose }: VideoModalProps) {
+export default function VideoModal({ videoUrl, isVertical = false, isOpen, onClose }: VideoModalProps) {
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
@@ -25,6 +28,30 @@ export default function VideoModal({ videoUrl, isOpen, onClose }: VideoModalProp
     }
   }, [isOpen, onClose])
 
+  useEffect(() => {
+    if (!isOpen || !videoUrl.includes('play.gumlet.io/embed/') || !iframeRef.current) return
+
+    let cancelled = false
+    import('player.js').then(({ default: playerjs }) => {
+      if (cancelled || !iframeRef.current) return
+
+      const player = new playerjs.Player(iframeRef.current)
+      player.on('ready', async () => {
+        try {
+          await player.setCurrentTime(0)
+          await player.unmute()
+          await player.play()
+        } catch {
+          // The player remains available with its manual audio controls if the browser blocks autoplay audio.
+        }
+      })
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [isOpen, videoUrl])
+
   if (!isOpen) return null
 
   return (
@@ -34,7 +61,11 @@ export default function VideoModal({ videoUrl, isOpen, onClose }: VideoModalProp
     >
       <div className="absolute inset-0 bg-black/90" />
       <div
-        className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden"
+        className={`relative bg-black rounded-2xl overflow-hidden ${
+          isVertical
+            ? 'h-[min(82vh,720px)] w-[min(90vw,405px)]'
+            : 'aspect-video w-full max-w-4xl'
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -47,7 +78,8 @@ export default function VideoModal({ videoUrl, isOpen, onClose }: VideoModalProp
         </button>
         {videoUrl.includes('play.gumlet.io/embed/') ? (
           <iframe
-            src={videoUrl}
+            ref={iframeRef}
+            src={`${videoUrl}${videoUrl.includes('?') ? '&' : '?'}autoplay=false&loop=false&player_color=%2330c0ff&disabled_player_control=captions`}
             title="Gumlet video player"
             className="absolute inset-0 h-full w-full border-0"
             referrerPolicy="origin"

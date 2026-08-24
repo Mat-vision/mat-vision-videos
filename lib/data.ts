@@ -6,6 +6,7 @@ export interface Project {
   thumbnail: string
   videoUrl: string
   horizontalThumbnail: boolean
+  isVertical?: boolean
 }
 
 export interface Stat {
@@ -90,6 +91,7 @@ export const projects: Project[] = [
     thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=800&q=80',
     videoUrl: 'https://play.gumlet.io/embed/6a8b50826946b9808fc53fb7',
     horizontalThumbnail: true,
+    isVertical: true,
   },
   {
     id: '7',
@@ -99,6 +101,7 @@ export const projects: Project[] = [
     thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
     videoUrl: 'https://play.gumlet.io/embed/6a8b50e16946b9808fc540c6',
     horizontalThumbnail: true,
+    isVertical: true,
   },
   {
     id: '8',
@@ -108,6 +111,7 @@ export const projects: Project[] = [
     thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80',
     videoUrl: 'https://play.gumlet.io/embed/6a8b51c9ab2c54150e93e942',
     horizontalThumbnail: true,
+    isVertical: true,
   },
   {
     id: '9',
@@ -130,21 +134,21 @@ export const stats: Stat[] = [
 export const whyMeCards: WhyMeCard[] = [
   {
     number: '01',
-    title: 'Buyer psychology',
+    title: 'Performance',
     description:
-      'After years of analysing data and working with over 100 brands across numerous niches I identified the psychological frameworks that make people watch and buy. I don’t approach editing as cutting clips. I take your data, viewer behaviour, analysis and use it in order to craft edits that work. Every shot, graphic, cut, sound effect, and music track is there for a reason - to turn viewer into buyer.',
+      'I use performance analysis, research, and insights I\u2019ve gathered by completing 1000+ projects to make informed editing decisions. Everything I do is backed by data on what turns viewers into buyers, not my personal preference.',
   },
   {
     number: '02',
-    title: 'Express delivery',
+    title: 'Psychology',
     description:
-      'Money loves speed. There is nothing worse than waiting for an edit while your ads die off in the ad account. With me you’re not going to face that problem. I’m using proven frameworks that helped me create ads for multiple 9 figure brands in under 48h. All while maintaining flawless communication so that you know exactly when your next winning creative is going to be completed.',
+      'High-converting editing is all about guiding the viewer\u2019s attention, thoughts, and emotions. Every editing decision I make is designed to influence what the viewer sees and feels, in a way that makes them take action.',
   },
   {
     number: '03',
-    title: 'Tailored Strategy',
+    title: 'Personalization',
     description:
-      'Over the years I’ve worked with countless brands in numerous niches. What works for a 6-figure E-com brand isn’t going to work for a 9-figure financial service business. That’s why I personalize the editing to your specific niche and product. We will take your target demographic, your message, and craft an experience tailored to what’s going to work for your specific business.',
+      'What works for a 6-figure E-com brand isn\u2019t going to work for a 9-figure financial service business. I take your demographic, your message, your product and craft an experience tailored to what will work for your specific business.',
   },
 ]
 
@@ -153,25 +157,25 @@ export const faqItems: FaqItem[] = [
     number: '01',
     question: "What's the cost?",
     answer:
-      'The cost depends on the scope of work, complexity and length of the project. Contact me to get a quote tailored towards your needs.',
+      'The cost depends on the scope of work, complexity and length of the project. Contact me to get a quote tailored to your needs.',
   },
   {
     number: '02',
     question: "What's the delivery time?",
     answer:
-      'First versions of the ads (up to 5 minutes long) will be delivered in under 48h. For bigger projects like VSLs or bigger ad batches the delivery shouldn’t take longer than a week however it does depend on the scope of work.',
+      'First versions of ads up to 5 minutes long are delivered within 48 hours. For bigger projects like VSLs or larger ad batches the delivery time will be confirmed after discussing the scope of work.',
   },
   {
     number: '03',
     question: 'Can you handle big files and high resolutions?',
     answer:
-      "Absolutely! I had chance to work on 6K files shot on $100K RED cameras. I had projects where the files alone took up over 1tb of space. Doesn't matter if you need 1080p, 4K, or even 6K - I can handle it.",
+      "Absolutely! I've had the chance to work on 6K files shot on $100K RED cameras. I had projects where the files alone took up over 1TB of space. Doesn't matter if you need 1080p, 4K, or even 6K - I can handle it.",
   },
   {
     number: '04',
     question: "What if the video isn't up to my standards?",
     answer:
-      'Simple. I will work on it until it is. My priority is making sure every project I work on is a success. For both me and my clients. That’s why revisions are included in the price. If I’m not able to deliver a video you’re satisfied with, you don’t pay. Even though it never happened to me.',
+      "Simple. I will work on it until it is. My priority is making sure every project I work on is a success for both me and my clients. That's why revisions are included in the price.",
   },
 ]
 

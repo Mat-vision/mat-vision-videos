@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <div className="bg-[#111]">
+      <div className="bg-[#131313]">
         <Hero />
       </div>
       <LogoStrip />

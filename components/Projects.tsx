@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Reveal from './ui/Reveal'
 import CTAButton from './ui/CTAButton'
 import VideoModal from './ui/VideoModal'
@@ -11,7 +11,8 @@ type Filter = 'all' | 'ads' | 'vsls'
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<Filter>('all')
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
+  const [selectedVideo, setSelectedVideo] = useState<{ url: string; isVertical?: boolean } | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const filtered =
@@ -19,11 +20,20 @@ export default function Projects() {
       ? projects
       : projects.filter((p) => p.category === activeFilter)
 
+  useEffect(() => {
+    setActiveIndex(0)
+    scrollRef.current?.scrollTo({ left: 0 })
+  }, [activeFilter])
+
   function scrollBy(direction: 'left' | 'right') {
     if (!scrollRef.current) return
-    const card = scrollRef.current.querySelector('.project-card') as HTMLElement
-    const cardWidth = card?.offsetWidth ?? 400
-    scrollRef.current.scrollBy({ left: direction === 'left' ? -cardWidth : cardWidth, behavior: 'smooth' })
+    const nextIndex = Math.max(
+      0,
+      Math.min(filtered.length - 1, activeIndex + (direction === 'left' ? -1 : 1)),
+    )
+    const card = scrollRef.current.querySelector(`[data-project-id="${filtered[nextIndex].id}"]`)
+    setActiveIndex(nextIndex)
+    card?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
   }
 
   return (
@@ -73,7 +83,7 @@ export default function Projects() {
               <ProjectCard
                 key={project.id}
                 project={project}
-                onPlay={() => setSelectedVideo(project.videoUrl)}
+                onPlay={() => setSelectedVideo({ url: project.videoUrl, isVertical: project.isVertical })}
               />
             ))}
           </div>
@@ -95,7 +105,8 @@ export default function Projects() {
       </div>
 
       <VideoModal
-        videoUrl={selectedVideo || ''}
+        videoUrl={selectedVideo?.url || ''}
+        isVertical={selectedVideo?.isVertical}
         isOpen={!!selectedVideo}
         onClose={() => setSelectedVideo(null)}
       />
@@ -107,6 +118,7 @@ function ProjectCard({ project, onPlay }: { project: Project; onPlay: () => void
   return (
     <div
       className="project-card relative flex-shrink-0 w-[calc(100vw-5rem)] snap-center rounded-xl overflow-hidden bg-[#0a0a0a] cursor-pointer sm:w-[400px]"
+      data-project-id={project.id}
       onClick={onPlay}
     >
       <div className="relative aspect-video">

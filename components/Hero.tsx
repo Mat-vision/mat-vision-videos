@@ -56,9 +56,7 @@ export default function Hero() {
       <div
         className="absolute inset-0 rounded-b-[2.75rem] md:rounded-b-[5.5rem] overflow-hidden"
         style={{
-          background:
-            'radial-gradient(ellipse at 15% 15%, #08485c 0%, #062d42 25%, #041522 50%, #000 100%), radial-gradient(ellipse at 85% 85%, #073f53 0%, #052230 35%, #040d15 60%, #000 100%)',
-          backgroundBlendMode: 'screen',
+          background: '#000',
         }}
       />
       <div className="relative z-10 max-w-5xl mx-auto text-center">
@@ -66,8 +64,8 @@ export default function Hero() {
           className="relative top-1 max-w-full text-[clamp(2.1rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-normal md:whitespace-nowrap"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
-          <span className="hnw-roman hero-roman">Turn your copy into </span>
-          <span className="hnw-bold hero-bold">videos that sell</span>
+          <span className="hnw-roman hero-roman">Ads and VSLs<br className="md:hidden" /> </span>
+          <span className="hnw-bold hero-bold">edited to convert</span>
         </h1>
         <p
           className="relative top-1 whitespace-nowrap text-white text-xl md:text-4xl leading-none mb-7"
@@ -78,7 +76,7 @@ export default function Hero() {
         </p>
 
         <div
-          className="relative w-full max-w-[700px] lg:max-w-[800px] mx-auto aspect-video overflow-hidden cursor-pointer group mb-7"
+          className="relative -mx-6 w-screen max-w-none sm:mx-auto sm:w-full sm:max-w-[700px] lg:max-w-[800px] aspect-video overflow-hidden cursor-pointer group mb-7"
         >
           <iframe
             key={videoSrc}

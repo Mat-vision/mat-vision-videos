@@ -8,7 +8,7 @@ export default function Stats() {
   return (
     <section
       className="py-7 px-6"
-      style={{ background: '#111' }}
+      style={{ background: '#131313' }}
     >
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-4">

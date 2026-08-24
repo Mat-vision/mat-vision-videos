@@ -6,7 +6,7 @@ export default function Faq() {
   return (
     <section className="bg-black py-12 md:py-16 px-6">
       <div className="max-w-3xl mx-auto">
-        <Reveal className="text-center mb-4">
+        <Reveal className="text-center mb-3 md:mb-4">
           <h2
             className="text-3xl md:text-4xl font-bold text-white"
           >
@@ -14,11 +14,11 @@ export default function Faq() {
           </h2>
         </Reveal>
 
-        <Reveal delay={100} className="text-center mb-10">
+        <Reveal delay={100} className="text-center mb-8 md:mb-10">
           <p className="text-white text-lg md:text-xl font-medium">Have any questions? Check these.</p>
         </Reveal>
 
-        <div className="space-y-10 mb-10">
+        <div className="space-y-8 md:space-y-10 mb-10">
           {faqItems.map((item, i) => (
             <Reveal key={item.number} delay={i * 80}>
               <div className="flex gap-6">
