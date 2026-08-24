@@ -10,7 +10,7 @@ export default function Results() {
           <h2
             className="text-3xl md:text-4xl font-bold text-white"
           >
-            Not Just talk
+            Not Just Talk
           </h2>
           </Reveal>
 

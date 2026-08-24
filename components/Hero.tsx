@@ -18,26 +18,7 @@ export default function Hero() {
   const [playerReady, setPlayerReady] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const playerRef = useRef<GumletPlayer | null>(null)
-  const startRequested = useRef(false)
-  const videoSrc = `${heroVideoUrl}?autoplay=true&loop=true&disable_player_controls=false&player_color=%2330c0ff&thumbnail=%2Fassets%2Fshowreel-thumbnail.png`
-
-  async function startShowreel(player: GumletPlayer) {
-    await Promise.all([
-      player.setLoop(false),
-      player.setCurrentTime(0),
-      player.unmute(),
-      player.play(),
-    ])
-  }
-
-  function handleShowreelStart() {
-    startRequested.current = true
-    setPreview(false)
-
-    if (playerRef.current) {
-      void startShowreel(playerRef.current).catch(() => undefined)
-    }
-  }
+  const videoSrc = `${heroVideoUrl}?autoplay=${preview ? 'true' : 'false'}&loop=${preview ? 'true' : 'false'}&disable_player_controls=${preview ? 'true' : 'false'}&player_color=%2330c0ff&thumbnail=%2Fassets%2Fshowreel-thumbnail.png`
 
   useEffect(() => {
     if (!iframeRef.current) return
@@ -49,9 +30,17 @@ export default function Hero() {
       const player = new playerjs.Player(iframeRef.current)
       playerRef.current = player
       player.on('ready', async () => {
-        setPlayerReady(true)
-        if (startRequested.current) {
-          await startShowreel(player).catch(() => undefined)
+        if (preview) {
+          setPlayerReady(true)
+        } else {
+          try {
+            await player.setLoop(false)
+            await player.setCurrentTime(0)
+            await player.unmute()
+            await player.play()
+          } finally {
+            setPlayerReady(true)
+          }
         }
       })
     })
@@ -75,15 +64,15 @@ export default function Hero() {
           className="relative top-1 max-w-full text-[clamp(2.1rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-normal md:whitespace-nowrap"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
-          <span className="hnw-roman hero-roman">Ads and VSLs<br className="md:hidden" /> </span>
-          <span className="hnw-bold hero-bold">edited to convert</span>
+          <span className="hnw-roman hero-roman">Ads &amp; VSLs<br className="md:hidden" /> </span>
+          <span className="hnw-bold hero-bold">Edited To Convert</span>
         </h1>
         <p
           className="relative top-1 whitespace-nowrap text-white text-xl md:text-4xl leading-none mb-7"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
           <span className="hnw-bold">500M+</span>
-          <span className="hnw-roman"> paid views generated</span>
+          <span className="hnw-roman"> Paid Views Generated</span>
         </p>
 
         <div
@@ -100,7 +89,7 @@ export default function Hero() {
             allowFullScreen
           />
           {preview && (
-            <div className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center" onClick={handleShowreelStart}>
+            <div className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center" onClick={() => { setPlayerReady(false); setPreview(false) }}>
               {!playerReady && <Image
                   src="/assets/showreel-thumbnail.png"
                   alt="Showreel thumbnail"
@@ -110,7 +99,7 @@ export default function Hero() {
                 />}
               <button
                 type="button"
-                 onClick={(event) => { event.stopPropagation(); handleShowreelStart() }}
+                 onClick={(event) => { event.stopPropagation(); setPlayerReady(false); setPreview(false) }}
                 aria-label="Unmute showreel"
                 className="relative z-10 flex h-24 w-24 items-center justify-center rounded-full bg-black/60 text-white"
               >
@@ -121,6 +110,7 @@ export default function Hero() {
               </button>
             </div>
           )}
+          {!preview && !playerReady && <div className="absolute inset-0 z-10 bg-black" />}
         </div>
 
         <CTAButton href="#contact" />
