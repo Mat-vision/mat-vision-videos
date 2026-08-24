@@ -22,7 +22,7 @@ export default function Faq() {
           {faqItems.map((item, i) => (
             <Reveal key={item.number} delay={i * 80}>
               <div className="flex gap-6">
-                <span className="text-[4.25rem] md:text-[5rem] font-bold text-[#30c0ff] leading-none flex-shrink-0">
+                <span className="text-[4.25rem] md:text-[5rem] font-bold text-white leading-none flex-shrink-0">
                   {item.number}
                 </span>
                 <div>

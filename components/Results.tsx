@@ -5,17 +5,17 @@ export default function Results() {
   return (
     <section className="bg-white px-6 pb-10">
       <div className="max-w-5xl mx-auto">
-        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-[#191919] px-6 pt-4 pb-6">
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-white px-6 pt-4 pb-6">
           <Reveal className="text-center mb-1">
           <h2
-            className="text-3xl md:text-4xl font-bold text-white"
+            className="text-3xl md:text-4xl font-bold text-black"
           >
             Not Just Talk
           </h2>
           </Reveal>
 
           <Reveal delay={100} className="text-center">
-            <p className="text-white">
+            <p className="text-black font-semibold">
               Check the results and what my clients say
             </p>
           </Reveal>

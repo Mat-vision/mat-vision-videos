@@ -22,7 +22,7 @@ export default function WhyMe() {
           {whyMeCards.map((card, i) => (
             <Reveal key={card.number} delay={i * 150}>
                 <div className="border border-[#777] rounded-3xl pt-5 px-5 pb-5 bg-black h-full">
-                <span className="float-left mr-2 text-[4.25rem] md:text-[5rem] font-bold text-[#30c0ff] leading-[0.85]">
+                <span className="float-left mr-2 text-[4.25rem] md:text-[5rem] font-bold text-white leading-[0.85]">
                   {card.number}
                 </span>
                 <h3 className="mb-2 text-[1.5rem] md:text-[1.875rem] font-bold text-white leading-[0.95]">

@@ -4,16 +4,16 @@ import { logoImages } from '@/lib/data'
 
 export default function LogoStrip() {
   return (
-    <section className="relative bg-[#131313] rounded-b-[2.75rem] md:rounded-b-[5.5rem] pt-6 pb-6 overflow-hidden">
+    <section className="relative bg-white rounded-b-[2.75rem] md:rounded-b-[5.5rem] pt-5 pb-2 overflow-hidden">
       <Reveal className="relative -translate-y-2 text-center mb-4 px-6">
-        <p className="text-white/70 text-sm font-bold tracking-widest uppercase">
+        <p className="text-black text-sm font-bold tracking-widest uppercase">
           Trusted by 100+ brands
         </p>
       </Reveal>
 
-      <div className="w-full relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 md:w-40 bg-gradient-to-r from-[#131313] via-[#131313]/85 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 md:w-40 bg-gradient-to-l from-[#131313] via-[#131313]/85 to-transparent" />
+      <div className="relative -translate-y-3 w-full">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 md:w-40 bg-gradient-to-r from-white via-white/85 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 md:w-40 bg-gradient-to-l from-white via-white/85 to-transparent" />
         <div className="flex w-full overflow-hidden relative">
           <div
             className="flex w-max items-center"
@@ -32,7 +32,7 @@ export default function LogoStrip() {
                       src={logo.src}
                       alt={logo.name}
                       fill
-                      className="object-contain filter brightness-0 invert opacity-70"
+                      className="object-contain brightness-0"
                       sizes="220px"
                       style={{ transform: `scale(${logo.scale ?? 1})` }}
                     />

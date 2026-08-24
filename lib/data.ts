@@ -219,5 +219,5 @@ export const logoImages: LogoImage[] = [
   { name: 'Client logo 10', src: '/assets/logos/normalized/logo-9.png' },
 ]
 
-export const heroVideoUrl = 'https://play.gumlet.io/embed/6a8b5a10ab2c54150e940012'
+export const heroVideoUrl = 'https://play.gumlet.io/embed/6a8cb2c82c523ca48cdbaa26'
 export const heroThumbnail = 'https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=1200&q=80'

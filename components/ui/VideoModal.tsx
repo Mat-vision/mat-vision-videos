@@ -79,7 +79,7 @@ export default function VideoModal({ videoUrl, isVertical = false, isOpen, onClo
         {videoUrl.includes('play.gumlet.io/embed/') ? (
           <iframe
             ref={iframeRef}
-            src={`${videoUrl}${videoUrl.includes('?') ? '&' : '?'}autoplay=false&loop=false&player_color=%2330c0ff&disabled_player_control=captions`}
+            src={`${videoUrl}${videoUrl.includes('?') ? '&' : '?'}autoplay=false&loop=false&player_color=%23000000&disabled_player_control=captions`}
             title="Gumlet video player"
             className="absolute inset-0 h-full w-full border-0"
             referrerPolicy="origin"

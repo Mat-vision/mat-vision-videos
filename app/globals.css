@@ -21,7 +21,6 @@
   --color-navy-dark: #060f1f;
   --color-black: #000000;
   --color-black-card: #0a0a0a;
-  --color-blue: #30c0ff;
   --color-white: #ffffff;
   --color-gray-border: #262626;
   --color-gray-muted: #6b7280;
@@ -66,13 +65,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :focus-visible {
-  outline: 2px solid #30c0ff;
+  outline: 2px solid #fff;
   outline-offset: 3px;
 }
 
 ::selection {
-  background-color: #30c0ff;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
 }
 
 @keyframes scroll-logos {

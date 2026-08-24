@@ -18,7 +18,7 @@ export default function Hero() {
   const [playerReady, setPlayerReady] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const playerRef = useRef<GumletPlayer | null>(null)
-  const videoSrc = `${heroVideoUrl}?autoplay=${preview ? 'true' : 'false'}&loop=${preview ? 'true' : 'false'}&disable_player_controls=${preview ? 'true' : 'false'}&player_color=%2330c0ff&thumbnail=%2Fassets%2Fshowreel-thumbnail.png`
+  const videoSrc = `${heroVideoUrl}?autoplay=${preview ? 'true' : 'false'}&loop=${preview ? 'true' : 'false'}&disable_player_controls=${preview ? 'true' : 'false'}&player_color=%23000000&thumbnail=%2Fassets%2Fshowreel-thumbnail.png`
 
   useEffect(() => {
     if (!iframeRef.current) return
@@ -61,18 +61,17 @@ export default function Hero() {
       />
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <h1
-          className="relative top-1 max-w-full text-[clamp(2.1rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-normal md:whitespace-nowrap"
+          className="relative top-1 max-w-full text-[clamp(2.1rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-normal md:whitespace-nowrap uppercase hnw-bold hero-bold"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
-          <span className="hnw-roman hero-roman">Ads &amp; VSLs<br className="md:hidden" /> </span>
-          <span className="hnw-bold hero-bold">Edited To Convert</span>
+          <span>Ads &amp; VSLs<br className="md:hidden" /> </span>
+          <span>Edited To Convert</span>
         </h1>
         <p
-          className="relative top-1 whitespace-nowrap text-white text-xl md:text-4xl leading-none mb-7"
+          className="relative top-1 whitespace-nowrap text-white text-xl md:text-4xl leading-none mb-7 uppercase hnw-roman hero-roman"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
-          <span className="hnw-bold">500M+</span>
-          <span className="hnw-roman"> Paid Views Generated</span>
+          <span>500M+ Paid Views Generated</span>
         </p>
 
         <div

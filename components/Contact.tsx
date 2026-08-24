@@ -43,16 +43,16 @@ export default function Contact() {
           <div className="grid gap-4 md:grid-cols-2">
             <label className="grid gap-2 text-sm font-medium text-white">
               Name
-              <input name="name" required maxLength={100} className="rounded-lg border border-[#777] bg-black px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-[#30c0ff]" />
+              <input name="name" required maxLength={100} className="rounded-lg border border-[#777] bg-black px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-white" />
             </label>
             <label className="grid gap-2 text-sm font-medium text-white">
               Email
-              <input name="email" type="email" required maxLength={254} className="rounded-lg border border-[#777] bg-black px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-[#30c0ff]" />
+              <input name="email" type="email" required maxLength={254} className="rounded-lg border border-[#777] bg-black px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-white" />
             </label>
           </div>
           <label className="grid gap-2 text-sm font-medium text-white">
             Message
-            <textarea name="message" required maxLength={5000} rows={6} className="resize-y rounded-lg border border-[#777] bg-black px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-[#30c0ff]" />
+            <textarea name="message" required maxLength={5000} rows={6} className="resize-y rounded-lg border border-[#777] bg-black px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-white" />
           </label>
           <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
           <button type="submit" disabled={status === 'sending'} className="justify-self-center rounded-full bg-white px-7 py-3 font-semibold text-black disabled:opacity-60">
