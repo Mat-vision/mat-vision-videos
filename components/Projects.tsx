@@ -66,8 +66,8 @@ export default function Projects() {
 
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-2 pb-2 md:px-0"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPaddingInline: '0.5rem' }}
           >
             {filtered.map((project) => (
               <ProjectCard
@@ -106,7 +106,7 @@ export default function Projects() {
 function ProjectCard({ project, onPlay }: { project: Project; onPlay: () => void }) {
   return (
     <div
-      className="project-card relative flex-shrink-0 w-[400px] rounded-xl overflow-hidden bg-[#0a0a0a] cursor-pointer snap-start"
+      className="project-card relative flex-shrink-0 w-[calc(100vw-5rem)] snap-center rounded-xl overflow-hidden bg-[#0a0a0a] cursor-pointer sm:w-[400px]"
       onClick={onPlay}
     >
       <div className="relative aspect-video">

@@ -12,7 +12,7 @@ export default function CTAButton({ href = 'mailto:mat@matvisionvideos.com', onC
     <Link
       href={href}
       onClick={onClick}
-      className={`inline-flex items-center bg-white text-black font-semibold rounded-full motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.1] ${compact ? 'h-11 gap-2 pl-5 pr-1 text-sm' : 'h-14 gap-3 pl-8 pr-1 text-lg'} ${className}`}
+      className={`inline-flex shrink-0 items-center whitespace-nowrap bg-white text-black font-semibold rounded-full motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.1] ${compact ? 'h-11 gap-2 pl-4 pr-1 text-xs md:pl-5 md:text-sm' : 'h-14 gap-3 pl-8 pr-1 text-lg'} ${className}`}
     >
       Get started now
       <span className={`${compact ? 'w-9 h-9' : 'w-11 h-11'} rounded-full bg-[#2f9dff] flex items-center justify-center flex-shrink-0 p-1`}>

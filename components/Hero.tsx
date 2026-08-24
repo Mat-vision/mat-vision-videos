@@ -52,9 +52,9 @@ export default function Hero() {
   }, [preview, videoSrc])
 
   return (
-    <section className="relative flex flex-col items-center justify-center px-6 pt-24 pb-8 overflow-hidden rounded-b-[5.5rem]">
+    <section className="relative flex flex-col items-center justify-center px-6 pt-24 pb-8 overflow-hidden rounded-b-[2.75rem] md:rounded-b-[5.5rem]">
       <div
-        className="absolute inset-0 rounded-b-[5.5rem] overflow-hidden"
+        className="absolute inset-0 rounded-b-[2.75rem] md:rounded-b-[5.5rem] overflow-hidden"
         style={{
           background:
             'radial-gradient(ellipse at 15% 15%, #08485c 0%, #062d42 25%, #041522 50%, #000 100%), radial-gradient(ellipse at 85% 85%, #073f53 0%, #052230 35%, #040d15 60%, #000 100%)',
@@ -63,14 +63,14 @@ export default function Hero() {
       />
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <h1
-          className="relative top-1 text-[clamp(2.1rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-nowrap"
+          className="relative top-1 max-w-full text-[clamp(2.1rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-normal md:whitespace-nowrap"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
           <span className="hnw-roman hero-roman">Turn your copy into </span>
           <span className="hnw-bold hero-bold">videos that sell</span>
         </h1>
         <p
-          className="relative top-1 text-white text-3xl md:text-4xl leading-none mb-7"
+          className="relative top-1 whitespace-nowrap text-white text-xl md:text-4xl leading-none mb-7"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
           <span className="hnw-bold">500M+</span>
@@ -101,7 +101,7 @@ export default function Hero() {
                 />}
               <button
                 type="button"
-                onClick={(event) => { event.stopPropagation(); setPlayerReady(false); setPreview(false) }}
+                 onClick={(event) => { event.stopPropagation(); setPlayerReady(false); setPreview(false) }}
                 aria-label="Unmute showreel"
                 className="relative z-10 flex h-24 w-24 items-center justify-center rounded-full bg-black/60 text-white"
               >
