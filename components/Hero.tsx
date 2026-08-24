@@ -61,7 +61,7 @@ export default function Hero() {
       />
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <h1
-          className="relative top-1 max-w-full text-[clamp(2.1rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-normal md:whitespace-nowrap uppercase hnw-bold hero-bold"
+          className="relative top-1 max-w-full text-[clamp(1.8rem,4vw,3.5rem)] text-white leading-none mb-3 whitespace-normal md:whitespace-nowrap uppercase hnw-bold hero-bold"
           style={{ fontFamily: "'Helvetica Neue World', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}
         >
           <span>Ads &amp; VSLs<br className="md:hidden" /> </span>
