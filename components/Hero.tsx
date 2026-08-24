@@ -18,7 +18,26 @@ export default function Hero() {
   const [playerReady, setPlayerReady] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const playerRef = useRef<GumletPlayer | null>(null)
-  const videoSrc = `${heroVideoUrl}?autoplay=${preview ? 'true' : 'false'}&loop=${preview ? 'true' : 'false'}&disable_player_controls=${preview ? 'true' : 'false'}&player_color=%2330c0ff&thumbnail=%2Fassets%2Fshowreel-thumbnail.png`
+  const startRequested = useRef(false)
+  const videoSrc = `${heroVideoUrl}?autoplay=true&loop=true&disable_player_controls=false&player_color=%2330c0ff&thumbnail=%2Fassets%2Fshowreel-thumbnail.png`
+
+  async function startShowreel(player: GumletPlayer) {
+    await Promise.all([
+      player.setLoop(false),
+      player.setCurrentTime(0),
+      player.unmute(),
+      player.play(),
+    ])
+  }
+
+  function handleShowreelStart() {
+    startRequested.current = true
+    setPreview(false)
+
+    if (playerRef.current) {
+      void startShowreel(playerRef.current).catch(() => undefined)
+    }
+  }
 
   useEffect(() => {
     if (!iframeRef.current) return
@@ -30,17 +49,9 @@ export default function Hero() {
       const player = new playerjs.Player(iframeRef.current)
       playerRef.current = player
       player.on('ready', async () => {
-        if (preview) {
-          setPlayerReady(true)
-        } else {
-          try {
-            await player.setLoop(false)
-            await player.setCurrentTime(0)
-            await player.unmute()
-            await player.play()
-          } finally {
-            setPlayerReady(true)
-          }
+        setPlayerReady(true)
+        if (startRequested.current) {
+          await startShowreel(player).catch(() => undefined)
         }
       })
     })
@@ -49,7 +60,7 @@ export default function Hero() {
       cancelled = true
       playerRef.current = null
     }
-  }, [preview, videoSrc])
+  }, [videoSrc])
 
   return (
     <section className="relative flex flex-col items-center justify-center px-6 pt-24 pb-8 overflow-hidden rounded-b-[2.75rem] md:rounded-b-[5.5rem]">
@@ -89,7 +100,7 @@ export default function Hero() {
             allowFullScreen
           />
           {preview && (
-            <div className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center" onClick={() => { setPlayerReady(false); setPreview(false) }}>
+            <div className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center" onClick={handleShowreelStart}>
               {!playerReady && <Image
                   src="/assets/showreel-thumbnail.png"
                   alt="Showreel thumbnail"
@@ -99,7 +110,7 @@ export default function Hero() {
                 />}
               <button
                 type="button"
-                 onClick={(event) => { event.stopPropagation(); setPlayerReady(false); setPreview(false) }}
+                 onClick={(event) => { event.stopPropagation(); handleShowreelStart() }}
                 aria-label="Unmute showreel"
                 className="relative z-10 flex h-24 w-24 items-center justify-center rounded-full bg-black/60 text-white"
               >
@@ -110,7 +121,6 @@ export default function Hero() {
               </button>
             </div>
           )}
-          {!preview && !playerReady && <div className="absolute inset-0 z-10 bg-black" />}
         </div>
 
         <CTAButton href="#contact" />
